@@ -73,4 +73,3 @@ If a `.clang-format` file exists in the repository, it will be linked to provide
 ## Backup
 
 The installation script automatically backs up your existing configuration files before creating symbolic links. Backups are stored in `~/dotfiles/backup/` with timestamps.
->>>>>>> 8268acb6ae542fd30f2107cfdf4dd20aba1d8b22
