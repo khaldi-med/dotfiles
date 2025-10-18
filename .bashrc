@@ -1,4 +1,3 @@
-# If not running interactively, don't do anything
 case $- in
     *i*) ;;
       *) return;;
@@ -79,14 +78,6 @@ fi
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# Update the OS
-
-#git
-
-
-#path
-
-
 # Turn off after 60 minutes
 #alias turn_off='sudo shutdown -P +60'
 
@@ -137,9 +128,17 @@ alias vi='vim'
 alias update='sudo apt-get update && sudo apt-get upgrade -y'
 alias x='exit'
 alias gacp='git add .; git commit -m "Expanding my Skillset, Embracing Continuous Learning"; git push'
-cd $HOME/code/_42_school/cursus
+#alias gacp='git add .; git commit -m "42 Cursus/ >> minishell update code <<"; git push'
 
-alias francinette=/home/mohammed/francinette/tester.sh
-
-alias paco=/home/mohammed/francinette/tester.sh
-export ANTHROPIC_API_KEY=your-api-key
+#deno
+alias dnr='deno run --allow-net'
+alias dfm='deno fmt'
+#docker shorts
+alias di='docker images'
+alias dp='docker ps -a'
+alias dr='docker rm'
+alias dri='docker rmi'
+alias dpr='docker container prune'
+alias dst='docker stop'
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

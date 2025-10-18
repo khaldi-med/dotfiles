@@ -15,7 +15,35 @@ set ruler                     " Show cursor position
 set hlsearch incsearch        " Search highlighting
 set smartcase                 " Case-sensitive search when uppercase
 syntax enable                 " Enable syntax highlighting
-colorscheme wildcharm       " Color scheme
+set termguicolors            " Enable true color support
+
+"--------------------------------------------------------------
+"                     Terminal Color Settings
+"--------------------------------------------------------------
+" Properly detect and handle colors in tmux
+if exists('$TMUX')
+  " Colors in tmux
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  
+  " Set Vim-specific sequences for RGB colors
+  set t_ZH=[3m
+  set t_ZR=[23m
+  
+  " Fix background color erase
+  set t_ut=
+endif
+
+" Force Vim to use 256 colors if terminal supports it
+if &term =~ '256color'
+  " Disable Background Color Erase (BCE)
+  set t_ut=
+endif
+
+" Adjust cursor style for better visibility
+let &t_SI = "\<Esc>[6 q"  " Insert mode - vertical bar
+let &t_SR = "\<Esc>[4 q"  " Replace mode - underscore
+let &t_EI = "\<Esc>[2 q"  " Normal mode - block
 
 "--------------------------------------------------------------
 "                     Indentation & Tabs
@@ -42,14 +70,27 @@ Plug 'vim-syntastic/syntastic'
 Plug 'sirver/ultisnips'
 Plug 'pbondoer/vim-42header'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'crusoexia/vim-monokai'
+" Additional color schemes
+Plug 'morhetz/gruvbox'
+Plug 'dracula/vim', {'as': 'dracula'}
+Plug 'arcticicestudio/nord-vim'
 Plug 'cacharle/c_formatter_42.vim'
 Plug 'honza/vim-snippets'
+" JavaScript syntax highlighting and support
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'leafgarland/typescript-vim'
+Plug 'maxmellon/vim-jsx-pretty'
+" surround text
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
 call plug#end()
 
-"<Plugins config>
-filetype plugin on
+colorscheme evening 
 
+filetype plugin on
 " YouCompleteMe configuration
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 0
@@ -86,6 +127,13 @@ let g:cpp_class_decl_highlight = 1
 let g:airline_theme='dark'
 let g:colorizer_maxlines = 512
 
+" JavaScript syntax highlighting configuration
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_ngdoc = 1
+let g:javascript_plugin_flow = 1
+let g:jsx_ext_required = 0
+let g:vim_jsx_pretty_colorful_config = 1
+
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -98,13 +146,13 @@ nmap <F2> :Stdheader<CR>
 let g:hdr42user="mohkhald"
 let g:hdr42mail="mohkhald@student.1337.ma"
 
-"<User Interface>
-syntax on " Enable syntax processing
+"<User Interface>"
+" syntax on " Redundant - already enabled above
 set mouse=a "Enable mouse
 set number "Show line numbers
 set showcmd "Show the last command in bottom bar
 set wildmenu "Visual autocompletion for command menu
-set showmatch "Highlight matching [{()}]
+set showmatch "Highlight matching [{()}] 
 set ruler "Always show cursor position
 set list "Enable lists
 set listchars=tab:\>\- "Show tabs
@@ -115,7 +163,7 @@ set confirm "Display a confirmation dialog when closing an unsaved file
 "Toggle fold/unfold all folds
 noremap <F3> :call FoldToggle()<CR>
 
-"<Indent>
+"<Indent>"
 filetype indent on "Enable indentation rules that are file-type specific
 set tabstop=4 "Indent using four spaces
 set softtabstop=4 "Number of spaces in <Tab>
@@ -129,12 +177,12 @@ inoremap { {}<Left>
 inoremap ' ''<Left>
 inoremap " ""<Left>
 
-"<Search>
+"<Search>"
 set hlsearch "Search highlighting
 set incsearch "Incremental search that shows partial matches
 set smartcase "Automatically switch search to case-sensitive when search query contains an uppercase letter
 
-"<Miscellaneous>
+"<Miscellaneous>"
 set backupdir=~/.cache/vim "Directory to store backup files
 set dir=~/.cache/vim "Directory to store swap files
 set history=256 "Stack size
@@ -152,21 +200,11 @@ function FoldToggle()
 	endif
 endf
 
-" Commenting blocks of code.
-augroup commenting_blocks_of_code
-  autocmd!
-  autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
-  autocmd FileType sh,ruby,python   let b:comment_leader = '# '
-  autocmd FileType conf,fstab       let b:comment_leader = '# '
-  autocmd FileType tex              let b:comment_leader = '% '
-  autocmd FileType mail             let b:comment_leader = '> '
-  autocmd FileType vim              let b:comment_leader = '" '
-augroup END
-noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
-noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
+" Commentary plugin mapping
+noremap <leader>c gcc
 
 let g:c_formatter_42_set_equalprg=1
-let g:c_formatter_42_format_on_save=1
+let g:c_formatter_42_format_on_save=0
 
 " --------------------------------------------------------------
 "                    CoC (LSP) Configuration
@@ -276,3 +314,15 @@ if empty(glob('~/.vim/coc-settings.json'))
         \ }
   call writefile([json_encode(coc_settings)], expand('~/.vim/coc-settings.json'))
 endif
+
+let g:airline_theme='dark'
+
+" Theme mappings - easily switch themes with leader + t + key
+nnoremap <leader>tg :call ThemeSwitcher('gruvbox')<CR>
+nnoremap <leader>tn :call ThemeSwitcher('nord')<CR>
+nnoremap <leader>td :call ThemeSwitcher('dracula')<CR>
+nnoremap <leader>tm :call ThemeSwitcher('monokai')<CR>
+
+" Faster cursor movement
+set ttimeoutlen=80
+set timeoutlen=300

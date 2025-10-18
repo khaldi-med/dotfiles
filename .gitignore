@@ -1,0 +1,15 @@
+# Vim
+.vim/plugged
+.vim/backups
+.vim/swaps
+.vim/undodir
+.vim/views
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

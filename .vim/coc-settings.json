@@ -1,1 +1,30 @@
-{"clangd.arguments":["--background-index","--clang-tidy"],"diagnostic.displayByAle":false,"languageserver":{"clangd":{"args":["--background-index","--clang-tidy"],"filetypes":["c","cc","cpp","c++","objc","objcpp"],"rootPatterns":["compile_flags.txt","compile_commands.json",".git"],"command":"clangd"}},"clangd.path":"clangd","suggest.enablePreview":true,"suggest.enablePreselect":true,"suggest.noselect":false,"suggest.maxCompleteItemCount":20}
+{
+  "suggest.noselect": false,
+  "suggest.enablePreselect": true,
+  "suggest.enablePreview": true,
+  "suggest.maxCompleteItemCount": 20,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "c",
+    "cpp",
+    "javascript",
+    "typescript",
+    "json"
+  ],
+  "diagnostic.displayByAle": false,
+  "typescript.preferences.includePackageJsonAutoImports": "on",
+  "javascript.preferences.includePackageJsonAutoImports": "on",
+  "typescript.suggest.autoImports": true,
+  "javascript.suggest.autoImports": true,
+  "prettier.singleQuote": true,
+  "prettier.semi": true,
+  "eslint.filetypes": [
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact"
+  ],
+  "eslint.autoFixOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
+}
