@@ -1,4 +1,4 @@
-# Mohammed's Dotfiles
+# My Dotfiles
 
 This repository contains my personal configuration files (dotfiles) for various development tools. These files help maintain a consistent development environment across different machines.
 
@@ -62,24 +62,6 @@ The Vim configuration includes:
 
 If a `.clang-format` file exists in the repository, it will be linked to provide consistent C/C++ code formatting.
 
-## Customization
-
-Feel free to modify any of these dotfiles to suit your preferences:
-
-1. Edit the files in the `~/dotfiles` directory
-2. Re-run `./install.sh` to update the symbolic links
-
-## Prerequisites
-
-- Bash shell
-- Vim text editor
-- Git (for cloning the repository)
-
 ## Backup
 
 The installation script automatically backs up your existing configuration files before creating symbolic links. Backups are stored in `~/dotfiles/backup/` with timestamps.
-
-## License
-
-Feel free to use and modify these dotfiles for your personal use.
-
