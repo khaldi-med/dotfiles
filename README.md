@@ -1,74 +1,68 @@
-# My Dotfiles
+# Senior Architect Dotfiles
 
-This repository contains my personal dotfiles for various tools
+A modular, high-productivity development environment featuring Vim, Bash, and Tmux, optimized for performance and aesthetic consistency with the **Gruvbox** theme.
 
-## Installation
+## 🚀 Features
 
-1.  Clone this repository to your home directory:
-    ```bash
-    git clone <repository-url> ~/dotfiles
-    ```
-2.  Run the installation script:
-    ```bash
-    cd ~/dotfiles
-    ./install.sh
-    ```
-3.  Open vim and run `:PlugInstall` to install the vim plugins.
+- **Modular Architecture**: Clean separation of concerns for easy maintenance.
+- **Vim**: Optimized with `coc.nvim` (LSP), `fzf`, and `NERDTree`.
+- **Bash**: Enhanced with `starship` prompt, `zoxide` (smart cd), and `fzf` integration.
+- **Tmux**: Professional status bar with Gruvbox colors and prefix `C-a`.
+- **42 Cursus Optimized**: Built-in support for 42 headers and C/C++ formatting.
 
-## Included Configurations
+## 🛠️ Installation
 
-*   tmux
-*   vim
-*   bash
-*   coc.nvim for LSP
+### 1. Clone the repository
+```bash
+git clone https://github.com/yourusername/dotfiles.git ~/dotfiles
+cd ~/dotfiles
+```
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/yourusername/dotfiles.git ~/dotfiles
-   ```
-   Or manually download and place files in `~/dotfiles`
+### 2. Run the installer
+The installer will backup existing configs, create symlinks, and check for required tools.
+```bash
+./install.sh
+```
 
-2. Make the installation script executable:
-   ```bash
-   chmod +x ~/dotfiles/install.sh
-   ```
+### 3. Finalize Vim
+Open Vim and install plugins:
+```bash
+vim +PlugInstall +qall
+```
 
-3. Run the installation script:
-   ```bash
-   cd ~/dotfiles
-   ./install.sh
-   ```
+## 📦 Requirements & Dependencies
 
-The installation script will:
-- Create symbolic links from the dotfiles to your home directory
-- Back up any existing configuration files to `~/dotfiles/backup/`
-- Provide feedback about the installation process
+The `install.sh` script will check for these, but you can install them manually:
 
-## Configuration Details
+- **[Starship](https://starship.rs/)**: The minimal, blazing-fast, and infinitely customizable prompt.
+- **[FZF](https://github.com/junegunn/fzf)**: A command-line fuzzy finder.
+- **[Zoxide](https://github.com/ajeetdsouza/zoxide)**: A smarter cd command.
+- **[Tmux Plugin Manager (TPM)](https://github.com/tmux-plugins/tpm)**: Manage tmux plugins.
+- **[Vim-Plug](https://github.com/junegunn/vim-plug)**: Minimalist Vim plugin manager.
 
-### Bash Configuration (`.bashrc`)
+## 📂 Structure
 
-The `.bashrc` file contains:
-- Custom prompt configuration
-- Useful aliases for common commands
-- Environment variable settings
-- Path configurations
+```text
+~/dotfiles/
+├── bash/             # Modular bash configs
+│   ├── aliases.bash  # Custom shortcuts
+│   ├── config.bash   # History, shopt, etc.
+│   └── functions.bash # Utility functions
+├── vim/              # Modular vim configs
+│   ├── plugins.vim   # Plugin declarations
+│   ├── settings.vim  # General settings
+│   ├── theme.vim     # Gruvbox configuration
+│   └── coc-config.vim # LSP settings
+├── tmux/             # Tmux configuration
+└── install.sh        # Automated setup script
+```
 
-After installation, you might need to restart your terminal or run `source ~/.bashrc` for changes to take effect.
+## ⌨️ Custom Keybindings (Vim)
 
-### Vim Configuration (`.vimrc` and `.vim/`)
-
-The Vim configuration includes:
-- Syntax highlighting
-- Line numbering
-- Custom colour scheme
-- Key mappings for improved productivity
-- Various helpful plugins (if any are installed)
-
-### Clang Format (optional)
-
-If a `.clang-format` file exists in the repository, it will be linked to provide consistent C/C++ code formatting.
-
-## Backup
-
-The installation script automatically backs up your existing configuration files before creating symbolic links. Backups are stored in `~/dotfiles/backup/` with timestamps.
+- `<leader>` is set to `Space`.
+- `<leader>f`: Find files (FZF)
+- `<leader>e`: Toggle NERDTree
+- `<leader>w`: Save file
+- `<leader>n/p`: Next/Previous buffer
+- `gd`: Go to definition (LSP)
+- `K`: Show documentation (LSP)

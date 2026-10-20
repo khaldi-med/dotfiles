@@ -1,6 +1,7 @@
 " Modular Vim Configuration
 
 let g:dotfiles_vim = expand('~/dotfiles/vim')
+execute 'set runtimepath^=' . fnameescape(expand('~/dotfiles/.vim'))
 
 exec 'source ' . g:dotfiles_vim . '/plugins.vim'
 exec 'source ' . g:dotfiles_vim . '/settings.vim'
