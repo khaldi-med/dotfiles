@@ -1,6 +1,6 @@
 # My Dotfiles
 
-This repository contains my personal dotfiles for various tools.
+This repository contains my personal dotfiles for various tools
 
 ## Installation
 
@@ -15,14 +15,13 @@ This repository contains my personal dotfiles for various tools.
     ```
 3.  Open vim and run `:PlugInstall` to install the vim plugins.
 
-<<<<<<< HEAD
 ## Included Configurations
 
 *   tmux
 *   vim
 *   bash
 *   coc.nvim for LSP
-=======
+
 1. Clone this repository:
    ```bash
    git clone https://github.com/yourusername/dotfiles.git ~/dotfiles
@@ -62,7 +61,7 @@ After installation, you might need to restart your terminal or run `source ~/.ba
 The Vim configuration includes:
 - Syntax highlighting
 - Line numbering
-- Custom color scheme
+- Custom colour scheme
 - Key mappings for improved productivity
 - Various helpful plugins (if any are installed)
 
