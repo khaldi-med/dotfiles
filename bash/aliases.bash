@@ -14,6 +14,7 @@ alias ll='ls -alF'
 
 # Project-specific (42/C)
 alias gcc='gcc -Wall -Wextra -Werror'
+alias gpp='g++ -Wall -Wextra -Werror'
 alias out='./a.out'
 
 # Git

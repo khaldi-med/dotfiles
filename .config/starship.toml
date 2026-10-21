@@ -1,0 +1,96 @@
+# Get the Starship preset "Gruvbox Rainbow" style but customized
+format = """
+[](fg:#1d2021)\
+$os\
+$username\
+[](bg:#d79921 fg:#1d2021)\
+$directory\
+[](fg:#d79921 bg:#98971a)\
+$git_branch\
+$git_status\
+[](fg:#98971a bg:#458588)\
+$c\
+$elixir\
+$elm\
+$golang\
+$haskell\
+$java\
+$julia\
+$nodejs\
+$nim\
+$rust\
+[](fg:#458588 bg:#b16286)\
+$docker_context\
+[](fg:#b16286 bg:#1d2021)\
+$time\
+[ ](fg:#1d2021)\
+"""
+
+# Disable the blank line at the start of the prompt
+add_newline = false
+scan_timeout = 1000
+
+[os]
+disabled = false
+style = "bg:#1d2021 fg:#fabd2f"
+
+[os.symbols]
+Ubuntu = " "
+
+[username]
+show_always = true
+style_user = "bg:#1d2021 fg:#fabd2f"
+style_root = "bg:#1d2021 fg:#fb4934"
+format = '[$user]($style)'
+
+[directory]
+style = "bg:#d79921 fg:#1d2021"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = "󱑢 "
+"Music" = "󰝚 "
+"Pictures" = "󰙏 "
+
+[git_branch]
+symbol = ""
+style = "bg:#98971a fg:#1d2021"
+format = '[ $symbol $branch ]($style)'
+
+[git_status]
+style = "bg:#98971a fg:#1d2021"
+format = '[($all_status$ahead_behind )]($style)'
+
+[nodejs]
+symbol = ""
+style = "bg:#458588 fg:#1d2021"
+format = '[ $symbol ($version) ]($style)'
+
+[c]
+symbol = " "
+style = "bg:#458588 fg:#1d2021"
+format = '[ $symbol ($version) ]($style)'
+
+[rust]
+symbol = ""
+style = "bg:#458588 fg:#1d2021"
+format = '[ $symbol ($version) ]($style)'
+
+[golang]
+symbol = ""
+style = "bg:#458588 fg:#1d2021"
+format = '[ $symbol ($version) ]($style)'
+
+[docker_context]
+symbol = ""
+style = "bg:#b16286 fg:#1d2021"
+format = '[ $symbol $context ]($style)'
+
+[time]
+disabled = false
+time_format = "%R" # Hour:Minute Format
+style = "bg:#1d2021 fg:#ebdbb2"
+format = '[  $time ]($style)'
